@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongodb CRUD operation</title>
+
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Mongodb CRUD Operation</h1>
+
+    <!-- Display a message using Bootstrap alert -->
+    {{#if message}}
+        <div class="alert alert-success mt-3">
+            {{message}}
+        </div>
+    {{/if}}
+
+    <br>
+
+    <!-- Edit Form -->
+    {{#if edit_id}}
+        <div class="card mt-3">
+            <div class="card-header">
+                <h3>Edit</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/update_book/{{edit_id}}">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" value="{{edit_book.title}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control" name="author" value="{{edit_book.author}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+        <br><br>
+
+        <!-- Create Form -->
+    {{else}}
+        <div class="card mt-3">
+            <div class="card-header">
+                <h3>Create</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/store_book">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" class="form-control" name="author">
+                    </div>
+                    <button type="submit" class="btn btn-success">Create</button>
+                </form>
+            </div>
+        </div>
+        <br><br>
+    {{/if}}
+
+    <!-- List of Books -->
+    <ul class="list-group">
+        {{#each books}}
+            <li class="list-group-item">
+                {{this.title}} - {{this.author}}
+                <a href="/?edit_id={{this._id}}" class="btn btn-warning btn-sm float-right">Edit</a>
+                <a href="/?delete_id={{this._id}}" class="btn btn-danger btn-sm float-right mr-2" onclick="return confirm('Are you sure want to delete?')">Delete</a>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+
+<!-- Add Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
