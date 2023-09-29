@@ -2,7 +2,7 @@
 
 This project demonstrates basic CRUD (Create, Read, Update, Delete) operations using MongoDB and Node.js. It provides a simple API for managing data in a MongoDB database.
 
-## Table of Contents
+## Table of Content
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
